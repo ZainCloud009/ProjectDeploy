@@ -2,4 +2,4 @@
 
 echo "Starting deployment..."
 
-mkdir -p /var/www/html/MyApplication
+mkdir -p /var/www/html/app
