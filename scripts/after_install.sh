@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-cd /var/www/html/MyApplication
+cd /var/www/html/app
 
 composer install --no-interaction --prefer-dist --optimize-autoloader
 
@@ -11,7 +11,7 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-chown -R apache:apache /var/www/html/MyApplication
+chown -R apache:apache /var/www/html/app
 
 chmod -R 775 storage
 chmod -R 775 bootstrap/cache
