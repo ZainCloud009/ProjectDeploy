@@ -1,13 +1,19 @@
 #!/bin/bash
+set -e
 
-cd /var/www/html/MyApplication/
+cd /var/www/html/MyApplication
 
-composer install --no-dev --optimize-autoloader
-php artisan migrate 
+composer install --no-interaction --prefer-dist --optimize-autoloader
 
-php artisan optimize:clear
+php artisan migrate --force
 
-sudo chown -R apache:apache /var/www/html/MyApplication
-sudo chmod -R 775 /var/www/html/MyApplication/storage
-sudo chmod -R 775 /var/www/html/MyApplication/bootstrap/cache
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 
+chown -R apache:apache /var/www/html/MyApplication
+
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+
+echo "Deployment completed."
