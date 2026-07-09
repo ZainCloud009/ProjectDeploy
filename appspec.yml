@@ -3,10 +3,10 @@ os: linux
 
 files:
   - source: /
-    destination: /var/www/html/MyApplication
+    destination: /var/www/html/app
 
 permissions:
-  - object: /var/www/html/MyApplication
+  - object: /var/www/html/app
     pattern: "**"
     owner: apache
     group: apache
