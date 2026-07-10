@@ -8,7 +8,7 @@ files:
 permissions:
   - object: /var/www/html/app
     pattern: "**"
-    owner: apache
+    owner: ec2-user
     group: apache
     mode: 755
 
