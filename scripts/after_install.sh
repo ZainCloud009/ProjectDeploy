@@ -3,17 +3,18 @@ set -e
 
 cd /var/www/html/app
 
-composer install --no-interaction --prefer-dist --optimize-autoloader
+composer install 
 
-php artisan migrate --force
+php artisan migrate 
 
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+php artisan key:generate
 
-chown -R apache:apache /var/www/html/app
+sudo chown -R ec2-user:apache /var/www/html
+sudo chmod 2775 /var/www/html/app && find /var/www/html/app -type d -exec sudo chmod 2775 {} \;
+find /var/www/html/app -type f -exec sudo chmod 0664 {} \;
 
-chmod -R 775 storage
-chmod -R 775 bootstrap/cache
 
 echo "Deployment completed."
